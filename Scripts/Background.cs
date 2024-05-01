@@ -7,7 +7,7 @@ public class Background : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        debug.log("sda");
+        debug.log("sdaa");
     }
 
     // Update is called once per frame
