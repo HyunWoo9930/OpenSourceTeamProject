@@ -39,3 +39,10 @@ MonoBehaviour:
     linkText: Share your feedback on this template with us
     url: https://unitysoftware.co1.qualtrics.com/jfe/form/SV_b8GWOIYxi4l6PDE?templatename=mobile2d
   loadedLayout: 1
+
+
+// 명단
+조장:
+1. 허준재 / 202103686 / 컴퓨터공학부
+2.
+3. 
