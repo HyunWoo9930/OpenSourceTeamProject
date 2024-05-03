@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
     void Start()
     {
-        debug.log("sdaa");
+
     }
 
-    // Update is called once per frame
-=======
     private float moveSpeed = 4f;
->>>>>>> Stashed changes
+
     void Update()
     {
         transform.position += Vector3.down * moveSpeed * Time.deltaTime;
