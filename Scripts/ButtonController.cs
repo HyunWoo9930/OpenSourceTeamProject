@@ -13,6 +13,12 @@ public class ButtonController : MonoBehaviour
 
     void TaskOnClick()
     {
-        SceneManager.LoadScene("InGameScene");
+        if (yourButton.name.Equals("Replay") || yourButton.name.Equals("Play"))
+        {
+            SceneManager.LoadScene("InGameScene");
+        } else if (yourButton.name.Equals("Home"))
+        {
+            SceneManager.LoadScene("MainScene");
+        }
     }
 }
