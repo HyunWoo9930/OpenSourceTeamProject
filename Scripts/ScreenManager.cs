@@ -1,4 +1,4 @@
-using UnityEngine;
+/* sing UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScreenManager : MonoBehaviour
@@ -9,4 +9,4 @@ public class ScreenManager : MonoBehaviour
         // "InGame"이라는 이름의 씬을 로드합니다.
         SceneManager.LoadScene("InGame");
     }
-}
+} */

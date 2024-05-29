@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -32,4 +32,4 @@ public class HealthSliderController : MonoBehaviour
     {
         SceneManager.LoadScene("GameOverScene");
     }
-}
+}  */
