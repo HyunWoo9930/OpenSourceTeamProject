@@ -51,7 +51,7 @@ public class DSLManager : MonoBehaviour {
 
     public GameManager gameManager;
     public CharacterManager CharacterManager;
-    public Text[] moneyText, rankingText;
+    public Text[] rankingText;
     public Sprite[] characterSprite;
     public Image[] rankCharacterImg;
 
@@ -72,10 +72,10 @@ public class DSLManager : MonoBehaviour {
 
             Informs.Add(new Information(0, true, true, true, false));
 
-            DataSave();
+            SaveData();
         }
 
-        DataLoad();
+        LoadData();
         LoadRanking();
         gameManager.SettingBtnInit();
         gameManager.SoundInit();
@@ -84,53 +84,29 @@ public class DSLManager : MonoBehaviour {
         gameManager.SettingOnOff("VibrateBtn");
     }
     
-    public void DataSave() {
-        string jdata_0 = JsonConvert.SerializeObject(Characters);
-        string jdata_1 = JsonConvert.SerializeObject(Rankings);
-        string jdata_2 = JsonConvert.SerializeObject(Informs);
-       
-        byte[] bytes_0 = System.Text.Encoding.UTF8.GetBytes(jdata_0);
-        byte[] bytes_1 = System.Text.Encoding.UTF8.GetBytes(jdata_1);
-        byte[] bytes_2 = System.Text.Encoding.UTF8.GetBytes(jdata_2);
-
-        string format_0 = System.Convert.ToBase64String(bytes_0);
-        string format_1 = System.Convert.ToBase64String(bytes_1);
-        string format_2 = System.Convert.ToBase64String(bytes_2);       
-
-        File.WriteAllText(Application.persistentDataPath + "/Characters.json", format_0);
-        File.WriteAllText(Application.persistentDataPath + "/Rankings.json", format_1);
-        File.WriteAllText(Application.persistentDataPath + "/Informs.json", format_2);
+    public void SaveData() {
+        File.WriteAllText(Application.persistentDataPath + "/Characters.json", Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(Characters))));
+        File.WriteAllText(Application.persistentDataPath + "/Rankings.json", Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(Rankings))));
+        File.WriteAllText(Application.persistentDataPath + "/Informs.json", Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(Informs))));
     }
 
 
-    public void DataLoad() {
-        string jdata_0 = File.ReadAllText(Application.persistentDataPath + "/Characters.json");
-        string jdata_1 = File.ReadAllText(Application.persistentDataPath + "/Rankings.json");
-        string jdata_2 = File.ReadAllText(Application.persistentDataPath + "/Informs.json");
-      
-        byte[] bytes_0 = System.Convert.FromBase64String(jdata_0);
-        byte[] bytes_1 = System.Convert.FromBase64String(jdata_1);
-        byte[] bytes_2 = System.Convert.FromBase64String(jdata_2);
-
-        string reformat_0 = System.Text.Encoding.UTF8.GetString(bytes_0);
-        string reformat_1 = System.Text.Encoding.UTF8.GetString(bytes_1);
-        string reformat_2 = System.Text.Encoding.UTF8.GetString(bytes_2);
-        
-        Characters = JsonConvert.DeserializeObject<List<Character>>(reformat_0);
-        Rankings = JsonConvert.DeserializeObject<List<Rankings>>(reformat_1);
-        Informs = JsonConvert.DeserializeObject<List<Information>>(reformat_2);
+    private void LoadData() {
+        Characters = JsonConvert.DeserializeObject<List<Character>>(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(Application.persistentDataPath + "/Characters.json"))));
+        Rankings = JsonConvert.DeserializeObject<List<Rankings>>(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(Application.persistentDataPath + "/Rankings.json"))));
+        Informs = JsonConvert.DeserializeObject<List<Information>>(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(Application.persistentDataPath + "/Informs.json"))));
     }
     
     public void SaveCharacterIndex() {
         for (int i = 0; i < Characters.Count; i++)
             Characters[i].Selected = false;
         Characters[CharacterManager.index].Selected = true;
-        DataSave();
+        SaveData();
         SceneManager.LoadScene(0);
     }
 
     public int GetSelectedCharIndex() {
-        DataLoad();
+        LoadData();
         for (int i = 0; i < Characters.Count; i++)
             if (Characters[i].Selected) return i;
         return 0;
@@ -141,7 +117,7 @@ public class DSLManager : MonoBehaviour {
 
     //#.Purchase Character
     public bool IsPurchased(int index) {
-        DataLoad();
+        LoadData();
         return Characters[index].Purchased;
     }
 
@@ -150,10 +126,10 @@ public class DSLManager : MonoBehaviour {
             obj.GetComponent<Animator>().SetTrigger("notice");
         else {
             Characters[CharacterManager.index].Purchased = true;
-            DataSave();
-            DataLoad();
+            SaveData();
+            LoadData();
             Informs[0].Money -= Characters[CharacterManager.index].Price;
-            DataSave();
+            SaveData();
             CharacterManager.ArrowBtn("null");
         }
     }
@@ -161,22 +137,22 @@ public class DSLManager : MonoBehaviour {
     public int GetPrice() { return Characters[CharacterManager.index].Price; }
     
     public int GetMoney() {
-        DataLoad();
+        LoadData();
         return Informs[0].Money;
     }
 
     public void SaveMoney(int money) {
-        DataLoad();
+        LoadData();
         Informs[0].Money = money;
-        DataSave();
+        SaveData();
     }
 
     public bool IsRetry() { return Informs[0].Retry; }
 
     public void ChangeRetry(bool isRetry) {
-        DataLoad();
+        LoadData();
         Informs[0].Retry = isRetry;
-        DataSave();
+        SaveData();
     }
 
 
@@ -192,24 +168,24 @@ public class DSLManager : MonoBehaviour {
 
     public void SaveRankScore(int finalScore) {
         Rankings[3].Score = finalScore;
-        DataSave();
+        SaveData();
         
         int charIndex = GetSelectedCharIndex();
         Rankings[3].CharacterIndex = charIndex;
         
         Rankings.Sort(delegate (Rankings a, Rankings b) { return b.Score.CompareTo(a.Score); });
 
-        DataSave();
-        DataLoad();
+        SaveData();
+        LoadData();
     }
 
     public int GetBestScore() {
-        DataLoad();
+        LoadData();
         return Rankings[0].Score;
     }
     
     public bool GetSettingOn(string type) {
-        DataLoad();
+        LoadData();
         switch (type) {
             case "BgmBtn":
                 return Informs[0].BgmOn;
@@ -222,7 +198,7 @@ public class DSLManager : MonoBehaviour {
     }
 
     public void ChangeOnOff(Button btn) {
-        DataLoad();
+        LoadData();
         if (btn.name == "BgmBtn") {
             Informs[0].BgmOn = !Informs[0].BgmOn;
         }
@@ -232,7 +208,7 @@ public class DSLManager : MonoBehaviour {
         if (btn.name == "VibrateBtn") {
             Informs[0].VibrationOn = !Informs[0].VibrationOn;
         }
-        DataSave();
+        SaveData();
         gameManager.SettingOnOff(btn.name);
         gameManager.SettingBtnChange(btn);
     }
