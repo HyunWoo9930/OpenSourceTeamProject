@@ -8,46 +8,46 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Character {
-    public string E_Name, K_Name;
-    public int price;
-    public bool selected, purchased;
+    public string EName, KName;
+    public int Price;
+    public bool Selected, Purchased;
 
-    public Character(string E_Name, string K_Name, int price, bool selected, bool purchased) {
-        this.E_Name = E_Name;
-        this.K_Name = K_Name;
-        this.price = price;
-        this.selected = selected;
-        this.purchased = purchased;
+    public Character(string eName, string kName, int price, bool selected, bool purchased) {
+        EName = eName;
+        KName = kName;
+        Price = price;
+        Selected = selected;
+        Purchased = purchased;
     }
 }
 
 public class Ranking {
-    public int score, characterIndex;
+    public int Score, CharacterIndex;
 
     public Ranking(int score, int characterIndex) {
-        this.score = score;
-        this.characterIndex = characterIndex;
+        Score = score;
+        CharacterIndex = characterIndex;
     }
 }
 
 public class Inform {
-    public int money;
-    public bool bgmOn, soundEffectOn, vibrationOn, Retry;
+    public int Money;
+    public bool BgmOn, SoundEffectOn, VibrationOn, Retry;
 
-    public Inform(int money, bool bgmOn, bool soundEffectOn, bool vibrationOn, bool Retry) {
-        this.money = money;
-        this.bgmOn = bgmOn;
-        this.soundEffectOn = soundEffectOn;
-        this.vibrationOn = vibrationOn;
-        this.Retry = Retry;
+    public Inform(int money, bool bgmOn, bool soundEffectOn, bool vibrationOn, bool retry) {
+        Money = money;
+        BgmOn = bgmOn;
+        SoundEffectOn = soundEffectOn;
+        VibrationOn = vibrationOn;
+        Retry = retry;
     }
 }
 
 
 public class DSLManager : MonoBehaviour {
-    List<Character> characters = new List<Character>();
-    List<Ranking> rankings = new List<Ranking>();
-    List<Inform> informs = new List<Inform>();
+    List<Character> Characters = new List<Character>();
+    List<Ranking> Rankings = new List<Ranking>();
+    List<Inform> Informs = new List<Inform>();
 
     public GameManager gameManager;
     public CharacterManager CharacterManager;
@@ -57,26 +57,25 @@ public class DSLManager : MonoBehaviour {
 
     private void Awake() {
         if (!File.Exists(Application.persistentDataPath + "/Characters.json")) {
-            characters.Add(new Character("Boo", "Boo", 0, true, true));
-            characters.Add(new Character("Rapper", "래퍼", 500, false, false));
-            characters.Add(new Character("Secretary", "비서", 500, false, false));
-            characters.Add(new Character("Boxer", "복서", 1000, false, false));
-            characters.Add(new Character("CheerLeader", "치어리더", 1000, false, false));
-            characters.Add(new Character("Sheriff", "보안관", 2000, false, false));
-            characters.Add(new Character("Plumber", "배관공", 2000, false, false));
+            Characters.Add(new Character("Boo", "Boo", 0, true, true));
+            Characters.Add(new Character("Rapper", "래퍼", 500, false, false));
+            Characters.Add(new Character("Secretary", "비서", 500, false, false));
+            Characters.Add(new Character("Boxer", "복서", 1000, false, false));
+            Characters.Add(new Character("CheerLeader", "치어리더", 1000, false, false));
+            Characters.Add(new Character("Sheriff", "보안관", 2000, false, false));
+            Characters.Add(new Character("Plumber", "배관공", 2000, false, false));
 
-            rankings.Add(new Ranking(0, 7));
-            rankings.Add(new Ranking(0, 7));
-            rankings.Add(new Ranking(0, 7));
-            rankings.Add(new Ranking(0, 7));
+            Rankings.Add(new Ranking(0, 7));
+            Rankings.Add(new Ranking(0, 7));
+            Rankings.Add(new Ranking(0, 7));
+            Rankings.Add(new Ranking(0, 7));
 
-            informs.Add(new Inform(0, true, true, true, false));
+            Informs.Add(new Inform(0, true, true, true, false));
 
             DataSave();
         }
 
         DataLoad();
-        LoadMoney(GetMoney());
         LoadRanking();
         gameManager.SettingBtnInit();
         gameManager.SoundInit();
@@ -86,9 +85,9 @@ public class DSLManager : MonoBehaviour {
     }
     
     public void DataSave() {
-        string jdata_0 = JsonConvert.SerializeObject(characters);
-        string jdata_1 = JsonConvert.SerializeObject(rankings);
-        string jdata_2 = JsonConvert.SerializeObject(informs);
+        string jdata_0 = JsonConvert.SerializeObject(Characters);
+        string jdata_1 = JsonConvert.SerializeObject(Rankings);
+        string jdata_2 = JsonConvert.SerializeObject(Informs);
        
         byte[] bytes_0 = System.Text.Encoding.UTF8.GetBytes(jdata_0);
         byte[] bytes_1 = System.Text.Encoding.UTF8.GetBytes(jdata_1);
@@ -117,23 +116,23 @@ public class DSLManager : MonoBehaviour {
         string reformat_1 = System.Text.Encoding.UTF8.GetString(bytes_1);
         string reformat_2 = System.Text.Encoding.UTF8.GetString(bytes_2);
         
-        characters = JsonConvert.DeserializeObject<List<Character>>(reformat_0);
-        rankings = JsonConvert.DeserializeObject<List<Ranking>>(reformat_1);
-        informs = JsonConvert.DeserializeObject<List<Inform>>(reformat_2);
+        Characters = JsonConvert.DeserializeObject<List<Character>>(reformat_0);
+        Rankings = JsonConvert.DeserializeObject<List<Ranking>>(reformat_1);
+        Informs = JsonConvert.DeserializeObject<List<Inform>>(reformat_2);
     }
     
     public void SaveCharacterIndex() {
-        for (int i = 0; i < characters.Count; i++)
-            characters[i].selected = false;
-        characters[CharacterManager.index].selected = true;
+        for (int i = 0; i < Characters.Count; i++)
+            Characters[i].Selected = false;
+        Characters[CharacterManager.index].Selected = true;
         DataSave();
         SceneManager.LoadScene(0);
     }
 
     public int GetSelectedCharIndex() {
         DataLoad();
-        for (int i = 0; i < characters.Count; i++)
-            if (characters[i].selected) return i;
+        for (int i = 0; i < Characters.Count; i++)
+            if (Characters[i].Selected) return i;
         return 0;
     }
 
@@ -143,53 +142,40 @@ public class DSLManager : MonoBehaviour {
     //#.Purchase Character
     public bool IsPurchased(int index) {
         DataLoad();
-        return characters[index].purchased;
+        return Characters[index].Purchased;
     }
 
     public void SaveCharacterPurchased(Animator obj) {
-        if (characters[CharacterManager.index].price > informs[0].money)
+        if (Characters[CharacterManager.index].Price > Informs[0].Money)
             obj.GetComponent<Animator>().SetTrigger("notice");
         else {
-            //Edit the data after buying a character
-            characters[CharacterManager.index].purchased = true;
+            Characters[CharacterManager.index].Purchased = true;
             DataSave();
             DataLoad();
-            informs[0].money -= characters[CharacterManager.index].price;
+            Informs[0].Money -= Characters[CharacterManager.index].Price;
             DataSave();
-            LoadMoney(informs[0].money);
             CharacterManager.ArrowBtn("null");
         }
     }
 
-    public int GetPrice() { return characters[CharacterManager.index].price; }
+    public int GetPrice() { return Characters[CharacterManager.index].Price; }
     
     public int GetMoney() {
         DataLoad();
-        return informs[0].money;
+        return Informs[0].Money;
     }
 
     public void SaveMoney(int money) {
         DataLoad();
-        informs[0].money = money;
-        DataSave();
-    }
-    
-    public void LoadMoney(int money) {
-        DataLoad();
-        // for (int i = 0; i < moneyText.Length; i++)
-            // moneyText[i].text = money.ToString();
+        Informs[0].Money = money;
         DataSave();
     }
 
-
-
-
-    //#.Retry
-    public bool IsRetry() { return informs[0].Retry; }
+    public bool IsRetry() { return Informs[0].Retry; }
 
     public void ChangeRetry(bool isRetry) {
         DataLoad();
-        informs[0].Retry = isRetry;
+        Informs[0].Retry = isRetry;
         DataSave();
     }
 
@@ -199,21 +185,19 @@ public class DSLManager : MonoBehaviour {
     //#.Ranking
     public void LoadRanking() {
         for (int i = 0; i < rankingText.Length; i++) {
-            rankingText[i].text = rankings[i].score == 0 ? " " : rankings[i].score.ToString();
-            rankCharacterImg[i].sprite = characterSprite[rankings[i].characterIndex];
+            rankingText[i].text = Rankings[i].Score == 0 ? " " : Rankings[i].Score.ToString();
+            rankCharacterImg[i].sprite = characterSprite[Rankings[i].CharacterIndex];
         }
     }
 
     public void SaveRankScore(int finalScore) {
-        rankings[3].score = finalScore;
+        Rankings[3].Score = finalScore;
         DataSave();
-
-        //Save the currently selected character index
+        
         int charIndex = GetSelectedCharIndex();
-        rankings[3].characterIndex = charIndex;
-
-        //Sort descending by score
-        rankings.Sort(delegate (Ranking a, Ranking b) { return b.score.CompareTo(a.score); });
+        Rankings[3].CharacterIndex = charIndex;
+        
+        Rankings.Sort(delegate (Ranking a, Ranking b) { return b.Score.CompareTo(a.Score); });
 
         DataSave();
         DataLoad();
@@ -221,22 +205,18 @@ public class DSLManager : MonoBehaviour {
 
     public int GetBestScore() {
         DataLoad();
-        return rankings[0].score;
+        return Rankings[0].Score;
     }
-
-
-
-
-    //#.Setting
+    
     public bool GetSettingOn(string type) {
         DataLoad();
         switch (type) {
             case "BgmBtn":
-                return informs[0].bgmOn;
+                return Informs[0].BgmOn;
             case "SoundBtn":
-                return informs[0].soundEffectOn;
+                return Informs[0].SoundEffectOn;
             case "VibrateBtn":
-                return informs[0].vibrationOn;
+                return Informs[0].VibrationOn;
         }
         return false;
     }
@@ -244,13 +224,13 @@ public class DSLManager : MonoBehaviour {
     public void ChangeOnOff(Button btn) {
         DataLoad();
         if (btn.name == "BgmBtn") {
-            informs[0].bgmOn = !informs[0].bgmOn;
+            Informs[0].BgmOn = !Informs[0].BgmOn;
         }
         if (btn.name == "SoundBtn") {
-            informs[0].soundEffectOn = !informs[0].soundEffectOn;
+            Informs[0].SoundEffectOn = !Informs[0].SoundEffectOn;
         }
         if (btn.name == "VibrateBtn") {
-            informs[0].vibrationOn = !informs[0].vibrationOn;
+            Informs[0].VibrationOn = !Informs[0].VibrationOn;
         }
         DataSave();
         gameManager.SettingOnOff(btn.name);

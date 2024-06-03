@@ -32,12 +32,10 @@ public class CharacterManager : MonoBehaviour
         if (dir == "Left") { 
              if (--index == -1) index = dslManager.characterSprite.Length - 2; }
         
-        //Change the character information of the index
         characterImage.sprite = dslManager.characterSprite[index];
         characterName.text = characterNames[index];
         price.text = "￦" + dslManager.GetPrice().ToString();
-
-        //Determining the type of button according to purchase
+        
         selectBtn.SetActive(dslManager.IsPurchased(index));
         purchaseBtn.SetActive(!dslManager.IsPurchased(index));
     }

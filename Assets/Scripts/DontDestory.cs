@@ -6,8 +6,7 @@ public class DontDestory : MonoBehaviour
 { 
     public static DontDestory Instance;
     AudioSource bgm;
-
-    //Singleton Pattern
+    
     private void Awake() {
         if (Instance != null) {
             Destroy(gameObject);
@@ -17,7 +16,7 @@ public class DontDestory : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void BgmPlay() {
+    public void PlayBgm() {
         if (Instance == null)
             bgm = gameObject.GetComponent<AudioSource>();
         else

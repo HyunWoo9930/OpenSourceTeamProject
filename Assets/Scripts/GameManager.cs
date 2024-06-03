@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour {
     public void SettingOnOff(string type) {
         switch (type) {
             case "BgmBtn":
-                if (dslManager.GetSettingOn(type)) { dontDestory.BgmPlay(); }
+                if (dslManager.GetSettingOn(type)) { dontDestory.PlayBgm(); }
                 else dontDestory.BgmStop();
                 break;
             case "SoundBtn":

@@ -46,17 +46,5 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Coin")
-        {
-            collision.gameObject.SetActive(false);
-            gameManager.PlaySound(0);
-            money += 2;
-            dslManager.LoadMoney(money);
-        }
-    }
-
-
    
 }
