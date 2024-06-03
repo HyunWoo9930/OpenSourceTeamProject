@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 15912851}
   - component: {fileID: 15912850}
   m_Layer: 0
-  m_Name: 2
+  m_Name: background_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4762,8 +4762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1583425216}
-  coinPrefab: {fileID: 3724985861161532616, guid: 992eaa39247fc96448038794c03445ef,
-    type: 3}
+  coinPrefab: {fileID: 3724985861161532616, guid: 992eaa39247fc96448038794c03445ef, type: 3}
 --- !u!4 &704661547
 Transform:
   m_ObjectHideFlags: 0
@@ -5776,7 +5775,7 @@ GameObject:
   - component: {fileID: 875904226}
   - component: {fileID: 875904225}
   m_Layer: 0
-  m_Name: 3
+  m_Name: background_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6072,7 +6071,7 @@ GameObject:
   - component: {fileID: 908336179}
   - component: {fileID: 908336178}
   m_Layer: 0
-  m_Name: 4
+  m_Name: background_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6614,7 +6613,7 @@ GameObject:
   - component: {fileID: 971161887}
   - component: {fileID: 971161886}
   m_Layer: 0
-  m_Name: 5
+  m_Name: background_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10510,7 +10509,7 @@ MonoBehaviour:
   - {fileID: 1137073041}
   - {fileID: 789466400}
   pauseBtn: {fileID: 350575232}
-  backGround:
+  backGrounds:
   - {fileID: 357241326}
   - {fileID: 15912849}
   - {fileID: 875904224}
