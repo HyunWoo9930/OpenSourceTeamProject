@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class DontDestory : MonoBehaviour
 { 
-    public static DontDestory Instance;
-    AudioSource bgm;
+    private static DontDestory _instance;
+    AudioSource _bgm;
     
     private void Awake() {
-        if (Instance != null) {
+        if (_instance != null) {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     public void BgmStop() {
-        if (Instance == null)
-            bgm = gameObject.GetComponent<AudioSource>();
+        if (_instance == null)
+            _bgm = gameObject.GetComponent<AudioSource>();
         else
-            bgm = Instance.GetComponent<AudioSource>();
-        bgm.enabled = false;
+            _bgm = _instance.GetComponent<AudioSource>();
+        _bgm.enabled = false;
     }
 
     public void PlayBgm() {
-        if (Instance == null)
-            bgm = gameObject.GetComponent<AudioSource>();
+        if (_instance == null)
+            _bgm = gameObject.GetComponent<AudioSource>();
         else
-            bgm = Instance.GetComponent<AudioSource>();
-        bgm.enabled = true;
+            _bgm = _instance.GetComponent<AudioSource>();
+        _bgm.enabled = true;
     }
 }
 
