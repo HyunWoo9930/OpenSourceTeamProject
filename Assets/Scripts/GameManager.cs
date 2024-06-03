@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour {
             if (score > 400) gaugeRedcutionRate = 0.0075f;
             gauge.fillAmount -= gaugeRedcutionRate;
         }
-        Invoke("GaugeReduce", 0.015f);
+        Invoke("GaugeReduce", 0.017f);
     }
 
     IEnumerator CheckGauge() {
