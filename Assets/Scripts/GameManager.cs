@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour {
     float gaugeRedcutionRate = 0.0025f;
     public bool[] IsChangeDir = new bool[20];
 
-    private readonly Vector3 _beforePosition,
+    private Vector3 _beforePosition;
+    private readonly Vector3
     _startPosition = new (-0.8f, -1.2f, 0),
     _leftPosition = new (-0.8f, 0.4f, 0),
     _rightPosition = new (0.8f, 0.4f, 0),
@@ -53,8 +54,7 @@ public class GameManager : MonoBehaviour {
             BtnDown(GameObject.Find("ChangeDirBtn"));
         }
     }
-
-    //Initially Spawn The Stairs
+    
     void StairsInit() {
         for (int i = 0; i < 20; i++) {
             switch (state) {
@@ -63,13 +63,13 @@ public class GameManager : MonoBehaviour {
                     state = State.leftDir;
                     break;
                 case State.leftDir:
-                    stairs[i].transform.position = beforePos + _leftPosition;
+                    stairs[i].transform.position = _beforePosition + _leftPosition;
                     break;
                 case State.rightDir:
-                    stairs[i].transform.position = beforePos + _rightPosition;
+                    stairs[i].transform.position = _beforePosition + _rightPosition;
                     break;
             }
-            beforePos = stairs[i].transform.position;
+            _beforePosition = stairs[i].transform.position;
 
             if (i != 0) {
                 if (Random.Range(1, 9) < 3 && i < 19) {
@@ -80,17 +80,16 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
-    //Spawn The Stairs At The Random Location
+    
     void SpawnStair(int num) {
         IsChangeDir[num + 1 == 20 ? 0 : num + 1] = false;
-        beforePos = stairs[num == 0 ? 19 : num - 1].transform.position;
+        _beforePosition = stairs[num == 0 ? 19 : num - 1].transform.position;
         switch (state) {
             case State.leftDir:
-                stairs[num].transform.position = beforePos + _leftPosition;
+                stairs[num].transform.position = _beforePosition + _leftPosition;
                 break;
             case State.rightDir:
-                stairs[num].transform.position = beforePos + _rightPosition;
+                stairs[num].transform.position = _beforePosition + _rightPosition;
                 break;
         }
         
