@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour {
         pauseBtn.SetActive(false);
 
         player.isDie = true;
-        player.MoveAnimation();
+        player.MovingAnimation();
         if (vibrationOn) Vibration();
         dslManager.SaveMoney(player.money);
 

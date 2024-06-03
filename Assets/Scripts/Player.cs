@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public GameManager gameManager;
     public DSLManager dslManager;
     public bool isleft = true, isDie = false;
-    public int characterIndex, stairIndex, money;
+    public int stairIndex, money;
 
     void Awake() {
         anim = gameObject.GetComponent<Animator>();
@@ -18,17 +18,23 @@ public class Player : MonoBehaviour
 
     public void Climb(bool isChange)
     {
-        if (isChange) isleft = !isleft;
+        if (isChange)
+        {
+            isleft = !isleft;
+        }
         gameManager.StairMove(stairIndex, isChange, isleft);
-        if ((++stairIndex).Equals(20)) stairIndex = 0;
-        MoveAnimation();
+        stairIndex += 1;
+        if (stairIndex.Equals(20))
+        {
+            stairIndex = 0;
+        }
+        MovingAnimation();
         gameManager.gaugeStart = true;
     }
 
 
-    public void MoveAnimation()
+    public void MovingAnimation()
     {
-        //Change left and right when changing direction
         if (!isleft)
             transform.rotation = Quaternion.Euler(0, -180, 0);
         else
