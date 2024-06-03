@@ -9,4 +9,11 @@
 ## 디자인
 1. 홈, 인게임, 설정 ...
 2. 5월 첫째주까지
-3. 
+
+##함수 설명
+1. ﻿ButtonController
+버튼을 클릭하는 기능을 처리하는 클래스를 정의합니다.
+Start 함수는 게임 object가 활성화되면 호출되는 함수입니다. Start()의 기능은 버튼이 클릭되면 TaskOnClick 메서드를 실행하는 것입니다.
+TaskOnClick 함수는 버튼이 Replay이거나 Play이면 InGameScene이 실행되고, Home이면 MainScene이 실행되는 것입니다.
+
+
