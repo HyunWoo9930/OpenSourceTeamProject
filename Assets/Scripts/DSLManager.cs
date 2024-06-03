@@ -21,20 +21,20 @@ public class Character {
     }
 }
 
-public class Ranking {
+public class Rankings {
     public int Score, CharacterIndex;
 
-    public Ranking(int score, int characterIndex) {
+    public Rankings(int score, int characterIndex) {
         Score = score;
         CharacterIndex = characterIndex;
     }
 }
 
-public class Inform {
+public class Information {
     public int Money;
     public bool BgmOn, SoundEffectOn, VibrationOn, Retry;
 
-    public Inform(int money, bool bgmOn, bool soundEffectOn, bool vibrationOn, bool retry) {
+    public Information(int money, bool bgmOn, bool soundEffectOn, bool vibrationOn, bool retry) {
         Money = money;
         BgmOn = bgmOn;
         SoundEffectOn = soundEffectOn;
@@ -46,8 +46,8 @@ public class Inform {
 
 public class DSLManager : MonoBehaviour {
     List<Character> Characters = new List<Character>();
-    List<Ranking> Rankings = new List<Ranking>();
-    List<Inform> Informs = new List<Inform>();
+    List<Rankings> Rankings = new List<Rankings>();
+    List<Information> Informs = new List<Information>();
 
     public GameManager gameManager;
     public CharacterManager CharacterManager;
@@ -65,12 +65,12 @@ public class DSLManager : MonoBehaviour {
             Characters.Add(new Character("Sheriff", "보안관", 2000, false, false));
             Characters.Add(new Character("Plumber", "배관공", 2000, false, false));
 
-            Rankings.Add(new Ranking(0, 7));
-            Rankings.Add(new Ranking(0, 7));
-            Rankings.Add(new Ranking(0, 7));
-            Rankings.Add(new Ranking(0, 7));
+            Rankings.Add(new Rankings(0, 7));
+            Rankings.Add(new Rankings(0, 7));
+            Rankings.Add(new Rankings(0, 7));
+            Rankings.Add(new Rankings(0, 7));
 
-            Informs.Add(new Inform(0, true, true, true, false));
+            Informs.Add(new Information(0, true, true, true, false));
 
             DataSave();
         }
@@ -117,8 +117,8 @@ public class DSLManager : MonoBehaviour {
         string reformat_2 = System.Text.Encoding.UTF8.GetString(bytes_2);
         
         Characters = JsonConvert.DeserializeObject<List<Character>>(reformat_0);
-        Rankings = JsonConvert.DeserializeObject<List<Ranking>>(reformat_1);
-        Informs = JsonConvert.DeserializeObject<List<Inform>>(reformat_2);
+        Rankings = JsonConvert.DeserializeObject<List<Rankings>>(reformat_1);
+        Informs = JsonConvert.DeserializeObject<List<Information>>(reformat_2);
     }
     
     public void SaveCharacterIndex() {
@@ -197,7 +197,7 @@ public class DSLManager : MonoBehaviour {
         int charIndex = GetSelectedCharIndex();
         Rankings[3].CharacterIndex = charIndex;
         
-        Rankings.Sort(delegate (Ranking a, Ranking b) { return b.Score.CompareTo(a.Score); });
+        Rankings.Sort(delegate (Rankings a, Rankings b) { return b.Score.CompareTo(a.Score); });
 
         DataSave();
         DataLoad();
