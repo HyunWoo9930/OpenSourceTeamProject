@@ -50,7 +50,6 @@
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/DontDestory.cs" />
     <Compile Include="Assets/Scripts/DSLManager.cs" />
-    <None Include="Assets/Resources/BillingMode.json" />
     <None Include="Assets/JsonDotNet/link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.24f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
