@@ -17,7 +17,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.154569
+  m_TransitionDuration: 0.07913737
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -86,7 +86,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BooMove
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6879878093712216725}
@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8707b5adf6094428397c222a3317275b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 728b3d8f0102b405c9250551151ea9a0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -790,7 +790,7 @@ MonoBehaviour:
   - {fileID: 1395930181}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -1481,7 +1481,7 @@ MonoBehaviour:
   - {fileID: 1573709169}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -4188,7 +4188,7 @@ MonoBehaviour:
   - {fileID: 882665355}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -8127,7 +8127,7 @@ MonoBehaviour:
   - {fileID: 368460515}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -9007,7 +9007,7 @@ MonoBehaviour:
   - {fileID: 1450794833}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -10512,7 +10512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 33947999}
   dslManager: {fileID: 464379068}
-  dontDestory: {fileID: 1657670010}
+  dontDestroy: {fileID: 1657670010}
   players:
   - {fileID: 33947993}
   - {fileID: 1928709414}
@@ -10542,7 +10542,7 @@ MonoBehaviour:
   - {fileID: 1885280564}
   - {fileID: 34761948}
   - {fileID: 1920522301}
-  UI:
+  ui:
   - {fileID: 1782092096}
   - {fileID: 1137073041}
   - {fileID: 789466400}
@@ -13602,7 +13602,7 @@ MonoBehaviour:
   - {fileID: 1257318936}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
@@ -14149,7 +14149,7 @@ MonoBehaviour:
   - {fileID: 1420743843822829914}
   gameManager: {fileID: 1583425216}
   dslManager: {fileID: 464379068}
-  isleft: 1
+  isLeft: 1
   isDie: 0
   stairIndex: 0
   money: 0
