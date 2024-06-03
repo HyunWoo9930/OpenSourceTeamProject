@@ -112,10 +112,6 @@ public class DSLManager : MonoBehaviour {
         return 0;
     }
 
-
-
-
-    //#.Purchase Character
     public bool IsPurchased(int index) {
         LoadData();
         return Characters[index].Purchased;
@@ -154,12 +150,8 @@ public class DSLManager : MonoBehaviour {
         Informs[0].Retry = isRetry;
         SaveData();
     }
-
-
-
-
-    //#.Ranking
-    public void LoadRanking() {
+    
+    private void LoadRanking() {
         for (int i = 0; i < rankingText.Length; i++) {
             rankingText[i].text = Rankings[i].Score == 0 ? " " : Rankings[i].Score.ToString();
             rankCharacterImg[i].sprite = characterSprite[Rankings[i].CharacterIndex];
@@ -212,12 +204,10 @@ public class DSLManager : MonoBehaviour {
         gameManager.SettingOnOff(btn.name);
         gameManager.SettingBtnChange(btn);
     }
-
     
     private void OnApplicationQuit() {
         ChangeRetry(false);
     }
-    
     
     private void OnApplicationPause() {
         if (gameManager.isGamePaused) return;

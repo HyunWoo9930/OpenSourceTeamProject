@@ -24,12 +24,12 @@ public class GameManager : MonoBehaviour {
     float gaugeRedcutionRate = 0.0025f;
     public bool[] IsChangeDir = new bool[20];
 
-    Vector3 beforePos,
-    startPos = new Vector3(-0.8f, -1.2f, 0),
-    leftPos = new Vector3(-0.8f, 0.4f, 0),
-    rightPos = new Vector3(0.8f, 0.4f, 0),
-    leftDir = new Vector3(0.8f, -0.4f, 0),
-    rightDir = new Vector3(-0.8f, -0.4f, 0);
+    private readonly Vector3 _beforePosition,
+    _startPosition = new (-0.8f, -1.2f, 0),
+    _leftPosition = new (-0.8f, 0.4f, 0),
+    _rightPosition = new (0.8f, 0.4f, 0),
+    _leftDirection = new (0.8f, -0.4f, 0),
+    _rightDirection = new (-0.8f, -0.4f, 0);
 
     enum State { start, leftDir, rightDir }
     State state = State.start;
@@ -59,14 +59,14 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 20; i++) {
             switch (state) {
                 case State.start:
-                    stairs[i].transform.position = startPos;
+                    stairs[i].transform.position = _startPosition;
                     state = State.leftDir;
                     break;
                 case State.leftDir:
-                    stairs[i].transform.position = beforePos + leftPos;
+                    stairs[i].transform.position = beforePos + _leftPosition;
                     break;
                 case State.rightDir:
-                    stairs[i].transform.position = beforePos + rightPos;
+                    stairs[i].transform.position = beforePos + _rightPosition;
                     break;
             }
             beforePos = stairs[i].transform.position;
@@ -87,10 +87,10 @@ public class GameManager : MonoBehaviour {
         beforePos = stairs[num == 0 ? 19 : num - 1].transform.position;
         switch (state) {
             case State.leftDir:
-                stairs[num].transform.position = beforePos + leftPos;
+                stairs[num].transform.position = beforePos + _leftPosition;
                 break;
             case State.rightDir:
-                stairs[num].transform.position = beforePos + rightPos;
+                stairs[num].transform.position = beforePos + _rightPosition;
                 break;
         }
         
@@ -107,8 +107,8 @@ public class GameManager : MonoBehaviour {
 
         //Move stairs to the right or left
         for (int i = 0; i < 20; i++) {
-            if (isleft) stairs[i].transform.position += leftDir;
-            else stairs[i].transform.position += rightDir;
+            if (isleft) stairs[i].transform.position += _leftDirection;
+            else stairs[i].transform.position += _rightDirection;
         }
 
         //Move the stairs below a certain height

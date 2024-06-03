@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.MemoryMappedFiles;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -26,15 +27,23 @@ public class CharacterManager : MonoBehaviour
     
     public void ArrowBtn(string dir)
     {
-        if (dir == "Right") {
-             if (++index == dslManager.characterSprite.Length-1) index = 0; }
+        switch (dir)
+        {
+            case "Right":
+            {
+                if (++index == dslManager.characterSprite.Length - 1) index = 0;
+                break;
+            }
+            case "Left":
+            {
+                if (--index == -1) index = dslManager.characterSprite.Length - 2;
+                break;
+            }
+        }
 
-        if (dir == "Left") { 
-             if (--index == -1) index = dslManager.characterSprite.Length - 2; }
-        
         characterImage.sprite = dslManager.characterSprite[index];
         characterName.text = characterNames[index];
-        price.text = "￦" + dslManager.GetPrice().ToString();
+        price.text = "￦" + dslManager.GetPrice();
         
         selectBtn.SetActive(dslManager.IsPurchased(index));
         purchaseBtn.SetActive(!dslManager.IsPurchased(index));

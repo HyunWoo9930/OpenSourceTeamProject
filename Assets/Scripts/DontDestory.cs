@@ -16,20 +16,20 @@ public class DontDestory : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayBgm() {
-        if (Instance == null)
-            bgm = gameObject.GetComponent<AudioSource>();
-        else
-            bgm = Instance.GetComponent<AudioSource>();
-        bgm.enabled = true;
-    }
-
     public void BgmStop() {
         if (Instance == null)
             bgm = gameObject.GetComponent<AudioSource>();
         else
             bgm = Instance.GetComponent<AudioSource>();
         bgm.enabled = false;
+    }
+
+    public void PlayBgm() {
+        if (Instance == null)
+            bgm = gameObject.GetComponent<AudioSource>();
+        else
+            bgm = Instance.GetComponent<AudioSource>();
+        bgm.enabled = true;
     }
 }
 
