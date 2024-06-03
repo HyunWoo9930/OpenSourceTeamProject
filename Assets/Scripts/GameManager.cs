@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public Player player;
-    public ObjectManager objectManager;
     public DSLManager dslManager;
     public DontDestory dontDestory;
     public GameObject[] players, stairs, UI;
@@ -22,7 +21,7 @@ public class GameManager : MonoBehaviour {
     int score, sceneCount, selectedIndex;
     public bool gaugeStart = false, vibrationOn = true, isGamePaused = false;
     float gaugeRedcutionRate = 0.0025f;
-    public bool[] IsChangeDir = new bool[20];
+    public bool[] isChangeDir = new bool[20];
 
     private Vector3 _beforePosition;
     private readonly Vector3
@@ -75,14 +74,14 @@ public class GameManager : MonoBehaviour {
                 if (Random.Range(1, 9) < 3 && i < 19) {
                     if (state == State.leftDir) state = State.rightDir;
                     else if (state == State.rightDir) state = State.leftDir;
-                    IsChangeDir[i + 1] = true;
+                    isChangeDir[i + 1] = true;
                 }
             }
         }
     }
     
     void SpawnStair(int num) {
-        IsChangeDir[num + 1 == 20 ? 0 : num + 1] = false;
+        isChangeDir[num + 1 == 20 ? 0 : num + 1] = false;
         _beforePosition = stairs[num == 0 ? 19 : num - 1].transform.position;
         switch (state) {
             case State.leftDir:
@@ -96,31 +95,25 @@ public class GameManager : MonoBehaviour {
         if (Random.Range(1, 9) < 3) {
             if (state == State.leftDir) state = State.rightDir;
             else if (state == State.rightDir) state = State.leftDir;
-            IsChangeDir[num + 1 == 20 ? 0 : num + 1] = true;
+            isChangeDir[num + 1 == 20 ? 0 : num + 1] = true;
         }
     }
-
-    //Stairs Moving Along The Direction       
+    
     public void StairMove(int stairIndex, bool isChange, bool isleft) {
         if (player.isDie) return;
-
-        //Move stairs to the right or left
         for (int i = 0; i < 20; i++) {
             if (isleft) stairs[i].transform.position += _leftDirection;
             else stairs[i].transform.position += _rightDirection;
         }
-
-        //Move the stairs below a certain height
+        
         for (int i = 0; i < 20; i++)
             if (stairs[i].transform.position.y < -5) SpawnStair(i);
-
-        //Game over if climbing stairs is wrong
-        if(IsChangeDir[stairIndex] != isChange) {
+        
+        if(isChangeDir[stairIndex] != isChange) {
             GameOver();
             return;
         }
-
-        //Score Update & Gauge Increase
+        
         scoreText.text = (++score).ToString();
         gauge.fillAmount += 0.7f;
         for (int i = 0; i < backGrounds.Length; i++)
@@ -128,11 +121,9 @@ public class GameManager : MonoBehaviour {
             backGrounds[i].transform.position += new Vector3(0, -0.05f, 0);
         }
     }
-
-    //#.Gauge
+    
     void GaugeReduce() {
         if (gaugeStart) {
-            //Gauge Reduction Rate Increases As Score Increases
             if (score > 30) gaugeRedcutionRate = 0.0033f;
             if (score > 60) gaugeRedcutionRate = 0.0037f;
             if (score > 100) gaugeRedcutionRate = 0.0043f;
@@ -153,11 +144,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void GameOver() {
-        //Animation
         anim[0].SetBool("GameOver", true);
         player.anim.SetBool("Die", true);
-
-        //UI
+        
         ShowScore();
         pauseBtn.SetActive(false);
 
@@ -166,17 +155,15 @@ public class GameManager : MonoBehaviour {
         if (vibrationOn) Vibration();
         dslManager.SaveMoney(player.money);
 
-        CancelInvoke();  //GaugeBar Stopped      
+        CancelInvoke();      
         Invoke("DisableUI", 1.5f);
     }
-
-    //Show score after game over
+    
     void ShowScore() {
         finalScoreText.text = score.ToString();
         dslManager.SaveRankScore(score);
         bestScoreText.text = dslManager.GetBestScore().ToString();
-
-        //When the highest score is recorded
+        
         if (score == dslManager.GetBestScore() && score != 0)
             UI[2].SetActive(true);
     }
@@ -190,7 +177,7 @@ public class GameManager : MonoBehaviour {
     public void BtnUp(GameObject btn) {
         btn.transform.localScale = new Vector3(1f, 1f, 1f);
         if (btn.name == "PauseBtn") {
-            CancelInvoke();  //Gauge Stopped
+            CancelInvoke();
             isGamePaused = true;
         }
         if (btn.name == "ResumeBtn") {
@@ -198,8 +185,7 @@ public class GameManager : MonoBehaviour {
             isGamePaused = false;
         }
     }
-
-    //#.Setting
+    
     public void SoundInit() {
         selectedIndex = dslManager.GetSelectedCharIndex();
         player = players[selectedIndex].GetComponent<Player>();

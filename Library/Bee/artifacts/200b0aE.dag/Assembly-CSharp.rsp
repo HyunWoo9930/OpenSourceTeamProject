@@ -370,7 +370,6 @@
 "Assets/Scripts/DontDestory.cs"
 "Assets/Scripts/DSLManager.cs"
 "Assets/Scripts/GameManager.cs"
-"Assets/Scripts/ObjectManager.cs"
 "Assets/Scripts/Player.cs"
 -langversion:9.0
 
