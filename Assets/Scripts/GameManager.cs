@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public DontDestory dontDestory;
     public GameObject[] players, stairs, UI;
     public GameObject pauseBtn;
-    public GameObject[] backGround;
+    public GameObject[] backGrounds;
 
     public AudioSource[] sound;
     public Animator[] anim;
@@ -124,9 +124,9 @@ public class GameManager : MonoBehaviour {
         //Score Update & Gauge Increase
         scoreText.text = (++score).ToString();
         gauge.fillAmount += 0.7f;
-        for (int i = 0; i < backGround.Length; i++)
+        for (int i = 0; i < backGrounds.Length; i++)
         {
-            backGround[i].transform.position += new Vector3(0, -0.05f, 0);
+            backGrounds[i].transform.position += new Vector3(0, -0.05f, 0);
         }
     }
 
