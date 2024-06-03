@@ -16,4 +16,6 @@
 Start 함수는 게임 object가 활성화되면 호출되는 함수입니다. Start()의 기능은 버튼이 클릭되면 TaskOnClick 메서드를 실행하는 것입니다.
 TaskOnClick 함수는 버튼이 Replay이거나 Play이면 InGameScene이 실행되고, Home이면 MainScene이 실행되는 것입니다.
 
-
+﻿2. CharacterManager 클래스
+캐릭터와 관련된 기능을 할 수 있는 클래스를 정의합니다.
+캐릭터의 인덱스를 읽기 위해 index를 선언하고, 캐릭터 이름들을 배열로 정의하고, DSLManager로 캐릭터의 정보와 설정들을 가져오고, 버튼, 소리, 이미지, 이름 보여주는 변수들을 선언합니다.
