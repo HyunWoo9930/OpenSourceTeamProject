@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public AudioSource[] sound;
     public GameManager gameManager;
     public DSLManager dslManager;
-    public bool isleft = true, isDie = false;
+    public bool isLeft = true, isDie = false;
     public int stairIndex, money;
 
     void Awake() {
@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
     {
         if (isChange)
         {
-            isleft = !isleft;
+            isLeft = !isLeft;
         }
-        gameManager.StairMove(stairIndex, isChange, isleft);
+        gameManager.StairMove(stairIndex, isChange, isLeft);
         stairIndex += 1;
         if (stairIndex.Equals(20))
         {
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     public void MovingAnimation()
     {
-        if (!isleft)
+        if (!isLeft)
             transform.rotation = Quaternion.Euler(0, -180, 0);
         else
             transform.rotation = Quaternion.Euler(0, 0, 0);

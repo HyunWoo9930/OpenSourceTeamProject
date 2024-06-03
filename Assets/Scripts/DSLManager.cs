@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Character {
     public string EName, KName;
-    public int Price;
+    public readonly int Price;
     public bool Selected, Purchased;
 
     public Character(string eName, string kName, int price, bool selected, bool purchased) {

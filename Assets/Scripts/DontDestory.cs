@@ -5,7 +5,7 @@ using UnityEngine;
 public class DontDestory : MonoBehaviour
 { 
     private static DontDestory _instance;
-    AudioSource _bgm;
+    private AudioSource _bgm;
     
     private void Awake() {
         if (_instance != null) {

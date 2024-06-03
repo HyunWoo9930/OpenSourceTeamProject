@@ -10,17 +10,17 @@ using Image = UnityEngine.UI.Image;
 public class CharacterManager : MonoBehaviour
 {
     public int index;
-    string[] characterNames = { "Boo", "래퍼", "비서", "복서", "치어리더", "보안관", "배관공" };
+    private readonly string[] _characterNames = { "Boo", "래퍼", "비서", "복서", "치어리더", "보안관", "배관공" };
     public DSLManager dslManager;
     public GameObject selectBtn, purchaseBtn;
-    AudioSource sound;
+    private AudioSource _sound;
     public Image characterImage;
     public Text characterName, price;
 
     private void Awake() {
         index = dslManager.GetSelectedCharIndex();
-        sound = GetComponent<AudioSource>();
-        sound.mute = !dslManager.GetSettingOn("SoundBtn");
+        _sound = GetComponent<AudioSource>();
+        _sound.mute = !dslManager.GetSettingOn("SoundBtn");
         ArrowBtn("null");
     }
 
@@ -46,7 +46,7 @@ public class CharacterManager : MonoBehaviour
         }
 
         characterImage.sprite = dslManager.characterSprite[index];
-        characterName.text = characterNames[index];
+        characterName.text = _characterNames[index];
         price.text = dslManager.GetPrice() + " 원";
         
         selectBtn.SetActive(dslManager.IsPurchased(index));

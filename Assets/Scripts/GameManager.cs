@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public Player player;
     public DSLManager dslManager;
-    public DontDestory dontDestory;
-    public GameObject[] players, stairs, UI;
+    public DontDestory dontDestroy;
+    public GameObject[] players, stairs, ui;
     public GameObject pauseBtn;
     public GameObject[] backGrounds;
 
@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour {
     public Image gauge;
     public Button[] settingButtons;
 
-    int score, sceneCount, selectedIndex;
-    public bool gaugeStart = false, vibrationOn = true, isGamePaused = false;
-    float gaugeRedcutionRate = 0.0025f;
+    private int _score, _sceneCount, _selectedIndex;
+    public bool gaugeStart, vibrationOn = true, isGamePaused;
+    float _gaugeReductionRate = 0.0025f;
     public bool[] isChangeDir = new bool[20];
 
     private Vector3 _beforePosition;
@@ -31,19 +31,19 @@ public class GameManager : MonoBehaviour {
     _leftDirection = new (0.8f, -0.4f, 0),
     _rightDirection = new (-0.8f, -0.4f, 0);
 
-    enum State { start, leftDir, rightDir }
-    State state = State.start;
+    private enum State { Start, LeftDir, RightDir }
+    private State _state = State.Start;
 
     void Awake() {
-        players[selectedIndex].SetActive(true);
-        player = players[selectedIndex].GetComponent<Player>();
+        players[_selectedIndex].SetActive(true);
+        player = players[_selectedIndex].GetComponent<Player>();
 
         StairsInit();
         GaugeReduce();
         StartCoroutine("CheckGauge");
 
-        UI[0].SetActive(dslManager.IsRetry());
-        UI[1].SetActive(!dslManager.IsRetry());        
+        ui[0].SetActive(dslManager.IsRetry());
+        ui[1].SetActive(!dslManager.IsRetry());        
     }
 
     void Update() {
@@ -56,15 +56,15 @@ public class GameManager : MonoBehaviour {
     
     void StairsInit() {
         for (int i = 0; i < 20; i++) {
-            switch (state) {
-                case State.start:
+            switch (_state) {
+                case State.Start:
                     stairs[i].transform.position = _startPosition;
-                    state = State.leftDir;
+                    _state = State.LeftDir;
                     break;
-                case State.leftDir:
+                case State.LeftDir:
                     stairs[i].transform.position = _beforePosition + _leftPosition;
                     break;
-                case State.rightDir:
+                case State.RightDir:
                     stairs[i].transform.position = _beforePosition + _rightPosition;
                     break;
             }
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour {
 
             if (i != 0) {
                 if (Random.Range(1, 9) < 3 && i < 19) {
-                    if (state == State.leftDir) state = State.rightDir;
-                    else if (state == State.rightDir) state = State.leftDir;
+                    if (_state == State.LeftDir) _state = State.RightDir;
+                    else if (_state == State.RightDir) _state = State.LeftDir;
                     isChangeDir[i + 1] = true;
                 }
             }
@@ -83,18 +83,18 @@ public class GameManager : MonoBehaviour {
     void SpawnStair(int num) {
         isChangeDir[num + 1 == 20 ? 0 : num + 1] = false;
         _beforePosition = stairs[num == 0 ? 19 : num - 1].transform.position;
-        switch (state) {
-            case State.leftDir:
+        switch (_state) {
+            case State.LeftDir:
                 stairs[num].transform.position = _beforePosition + _leftPosition;
                 break;
-            case State.rightDir:
+            case State.RightDir:
                 stairs[num].transform.position = _beforePosition + _rightPosition;
                 break;
         }
         
         if (Random.Range(1, 9) < 3) {
-            if (state == State.leftDir) state = State.rightDir;
-            else if (state == State.rightDir) state = State.leftDir;
+            if (_state == State.LeftDir) _state = State.RightDir;
+            else if (_state == State.RightDir) _state = State.LeftDir;
             isChangeDir[num + 1 == 20 ? 0 : num + 1] = true;
         }
     }
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         
-        scoreText.text = (++score).ToString();
+        scoreText.text = (++_score).ToString();
         gauge.fillAmount += 0.7f;
         for (int i = 0; i < backGrounds.Length; i++)
         {
@@ -124,14 +124,14 @@ public class GameManager : MonoBehaviour {
     
     void GaugeReduce() {
         if (gaugeStart) {
-            if (score > 30) gaugeRedcutionRate = 0.0033f;
-            if (score > 60) gaugeRedcutionRate = 0.0037f;
-            if (score > 100) gaugeRedcutionRate = 0.0043f;
-            if (score > 150) gaugeRedcutionRate = 0.005f;
-            if (score > 200) gaugeRedcutionRate = 0.005f;
-            if (score > 300) gaugeRedcutionRate = 0.0065f;
-            if (score > 400) gaugeRedcutionRate = 0.0075f;
-            gauge.fillAmount -= gaugeRedcutionRate;
+            if (_score > 30) _gaugeReductionRate = 0.0033f;
+            if (_score > 60) _gaugeReductionRate = 0.0037f;
+            if (_score > 100) _gaugeReductionRate = 0.0043f;
+            if (_score > 150) _gaugeReductionRate = 0.005f;
+            if (_score > 200) _gaugeReductionRate = 0.005f;
+            if (_score > 300) _gaugeReductionRate = 0.0065f;
+            if (_score > 400) _gaugeReductionRate = 0.0075f;
+            gauge.fillAmount -= _gaugeReductionRate;
         }
         Invoke("GaugeReduce", 0.017f);
     }
@@ -160,12 +160,12 @@ public class GameManager : MonoBehaviour {
     }
     
     void ShowScore() {
-        finalScoreText.text = score.ToString();
-        dslManager.SaveRankScore(score);
+        finalScoreText.text = _score.ToString();
+        dslManager.SaveRankScore(_score);
         bestScoreText.text = dslManager.GetBestScore().ToString();
         
-        if (score == dslManager.GetBestScore() && score != 0)
-            UI[2].SetActive(true);
+        if (_score == dslManager.GetBestScore() && _score != 0)
+            ui[2].SetActive(true);
     }
 
     public void BtnDown(GameObject btn) {
@@ -187,8 +187,8 @@ public class GameManager : MonoBehaviour {
     }
     
     public void SoundInit() {
-        selectedIndex = dslManager.GetSelectedCharIndex();
-        player = players[selectedIndex].GetComponent<Player>();
+        _selectedIndex = dslManager.GetSelectedCharIndex();
+        player = players[_selectedIndex].GetComponent<Player>();
         sound[3] = player.sound[0];
         sound[4] = player.sound[1];
         sound[5] = player.sound[2];
@@ -239,8 +239,8 @@ public class GameManager : MonoBehaviour {
     public void SettingOnOff(string type) {
         switch (type) {
             case "BgmBtn":
-                if (dslManager.GetSettingOn(type)) { dontDestory.PlayBgm(); }
-                else dontDestory.BgmStop();
+                if (dslManager.GetSettingOn(type)) { dontDestroy.PlayBgm(); }
+                else dontDestroy.BgmStop();
                 break;
             case "SoundBtn":
                 bool isOn = !dslManager.GetSettingOn(type);
@@ -262,7 +262,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void DisableUI() {
-        UI[0].SetActive(false);
+        ui[0].SetActive(false);
     }
 
     public void LoadScene(int i) {
