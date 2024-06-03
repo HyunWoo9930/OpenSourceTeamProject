@@ -10,7 +10,7 @@ using Image = UnityEngine.UI.Image;
 public class CharacterManager : MonoBehaviour
 {
     public int index;
-    string[] characterNames = { "Boo", "래퍼", "비서", "복서", "치어리더", "보안관", "배관공", "" };
+    string[] characterNames = { "Boo", "래퍼", "비서", "복서", "치어리더", "보안관", "배관공" };
     public DSLManager dslManager;
     public GameObject selectBtn, purchaseBtn;
     AudioSource sound;
@@ -31,12 +31,16 @@ public class CharacterManager : MonoBehaviour
         {
             case "Right":
             {
-                if (++index == dslManager.characterSprite.Length - 1) index = 0;
+                index++;
+                if (index == dslManager.characterSprite.Length - 1) index = 0;
                 break;
             }
             case "Left":
             {
-                if (--index == -1) index = dslManager.characterSprite.Length - 2;
+                if (index == -1)
+                {
+                    index = dslManager.characterSprite.Length - 2;
+                }
                 break;
             }
         }
