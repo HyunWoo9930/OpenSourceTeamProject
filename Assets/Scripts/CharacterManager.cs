@@ -43,7 +43,7 @@ public class CharacterManager : MonoBehaviour
 
         characterImage.sprite = dslManager.characterSprite[index];
         characterName.text = characterNames[index];
-        price.text = "￦" + dslManager.GetPrice();
+        price.text = dslManager.GetPrice() + " 원";
         
         selectBtn.SetActive(dslManager.IsPurchased(index));
         purchaseBtn.SetActive(!dslManager.IsPurchased(index));
