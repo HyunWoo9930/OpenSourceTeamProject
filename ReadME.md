@@ -56,4 +56,5 @@
 4. ﻿DontDestroy.cs
  1) DontDestroy 클래스
  싱글톤 패턴을 사용하기 위해 Instance 변수를 사용합니다. Instace가 존재하면 게임오브젝트를 Destroy함수를 이용하여 없애고, Instance가 없는 경우 DontDestroyOnLoad함수를 실행합니다.
+ ﻿2) BgmPlay함수는 Instance가 null인경우와 null이 아닌 경우로 나눠서 bgm을 재생합니다.
 
