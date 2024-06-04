@@ -50,5 +50,6 @@
  ﻿2)DataSave 함수는 Base64로 인코딩하는 함수이고, DataLoad함수는 Base64로 디코딩하는 함수입니다.
 
 >>>>>>> 04ff8a41f42090ab9ac1e420836931d2b306c936
+﻿3)SaveCharacterIndex함수는 캐릭터의 인덱스를 저장하고, 씬을 로드하는 기능을 하고,  GetSelectedCharIndex함수는 데이터를 로드해온 후 현재 선택된 캐릭터의 인덱스를 반환하는 기능을 합니다.
 
 
