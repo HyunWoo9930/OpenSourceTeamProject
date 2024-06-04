@@ -59,3 +59,6 @@
  ﻿2) BgmPlay함수는 Instance가 null인경우와 null이 아닌 경우로 나눠서 bgm을 재생합니다.
  3)﻿BgmStop함수는 브금을 멈추는 함수입니다. if-else구문을 사용하여 현재 사용하고 있는 브금을 가져온 뒤 bgm.enabled를 false로 변경하며 브금을 정지합니다.
 
+5. ﻿GameManagers.cs
+   1)GameManager 클래스는 게임을 실행할 때 사용해야 하는 모든 기능(플레이어, 계단, UI 등)들을 불러옵니다. 
+
