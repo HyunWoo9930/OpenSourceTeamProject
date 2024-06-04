@@ -57,4 +57,5 @@
  1) DontDestroy 클래스
  싱글톤 패턴을 사용하기 위해 Instance 변수를 사용합니다. Instace가 존재하면 게임오브젝트를 Destroy함수를 이용하여 없애고, Instance가 없는 경우 DontDestroyOnLoad함수를 실행합니다.
  ﻿2) BgmPlay함수는 Instance가 null인경우와 null이 아닌 경우로 나눠서 bgm을 재생합니다.
+ 3)﻿BgmStop함수는 브금을 멈추는 함수입니다. if-else구문을 사용하여 현재 사용하고 있는 브금을 가져온 뒤 bgm.enabled를 false로 변경하며 브금을 정지합니다.
 
