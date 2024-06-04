@@ -40,20 +40,14 @@
 3. ﻿DSLManager 클래스
  캐릭터, 랭킹, 설정 등 배열에 있는 정보 값들을 저장합니다. 
 또한, gameManager, characterManager은 각각 다른 gameManager, characterManager 클래스를 참조하고, characterSprite은 캐릭터 이미지 배열을 저장하고, rankCharacterImg은 순위에 따라 캐릭터를 나열하는 배열입니다.
-<<<<<<< HEAD
 
-=======
 ﻿ 1) Awake()에선 게임이 실행될 때 저장된 데이터로 캐릭터, 순위, 설정 등을 초기화하고 초기 데이터를 플레이어에게 제공하는 함수입니다.
-<<<<<<< HEAD
->>>>>>> b7c6133ee024a965cb398aae345693e362639508
-=======
  ﻿2)DataSave 함수는 Base64로 인코딩하는 함수이고, DataLoad함수는 Base64로 디코딩하는 함수입니다.
-
->>>>>>> 04ff8a41f42090ab9ac1e420836931d2b306c936
-﻿3)SaveCharacterIndex함수는 캐릭터의 인덱스를 저장하고, 씬을 로드하는 기능을 하고,  GetSelectedCharIndex함수는 데이터를 로드해온 후 현재 선택된 캐릭터의 인덱스를 반환하는 기능을 합니다.
-﻿4) IsRetry 함수는 informs[0].Retry값이 true이면 다시 시작하고, false이면 작동하지 않습니다.
-﻿5) ChangeRetry 함수는 다시 시작할 때 변경된 데이터를 기반으로 다시 시작하는 것을 변경합니다.
-﻿6) LoadRanking 함수는 랭킹을 저장하고, SaveRankScore 함수는 점수에 따라 내림차순으로 점수를 정렬하는 함수입니다.
-7)  GetBestScore 함수는 최고기록을 반환하는 함수입니다.
+ ﻿3)SaveCharacterIndex함수는 캐릭터의 인덱스를 저장하고, 씬을 로드하는 기능을 하고,  GetSelectedCharIndex함수는 데이터를 로드해온 후 현재 선택된 캐릭터의 인덱스를 반환하는 기능을 합니다.
+﻿ 4) IsRetry 함수는 informs[0].Retry값이 true이면 다시 시작하고, false이면 작동하지 않습니다.
+﻿ 5) ChangeRetry 함수는 다시 시작할 때 변경된 데이터를 기반으로 다시 시작하는 것을 변경합니다.
+﻿ 6) LoadRanking 함수는 랭킹을 저장하고, SaveRankScore 함수는 점수에 따라 내림차순으로 점수를 정렬하는 함수입니다.
+ 7)  GetBestScore 함수는 최고기록을 반환하는 함수입니다.
+﻿ 8) GetSettingOn 함수는 설정에 있는 소리 버튼들을 처음으로 초기화하는 함수입니다.
 
 
