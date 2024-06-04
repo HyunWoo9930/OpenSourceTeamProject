@@ -33,5 +33,11 @@
  캐릭터의 영어, 한글 이름을 전언하고, 선택여부를 설정하고 이를 배열로 나타냅니다.
  4)﻿Inform 클래스
  Inform클래스는 게임 설정란에 설정기능을 담당합니다. 에이쁠이 보2조는 설정란에 소리 on, off, 진동 기능을 추가했습니다. Inform()은 게임이 처음 시작될 때, 데이터를 로드 할때 등 현재 상태를 결정하는 함수입니다.
+ 5)﻿ Ranking 클래스
+ 점수와 캐릭터의 index를 빋아와서 캐릭터가 몇 점을 가지고 있는지 순위 정보를 저장하는 클래스입니다.
 
-3. 
+
+3. ﻿DSLManager 클래스
+ 캐릭터, 랭킹, 설정 등 배열에 있는 정보 값들을 저장합니다. 
+또한, gameManager, characterManager은 각각 다른 gameManager, characterManager 클래스를 참조하고, characterSprite은 캐릭터 이미지 배열을 저장하고, rankCharacterImg은 순위에 따라 캐릭터를 나열하는 배열입니다.
+
