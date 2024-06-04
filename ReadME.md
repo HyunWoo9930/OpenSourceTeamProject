@@ -69,4 +69,6 @@
    7) ﻿BtnDown함수와 BtnUp함수는 버튼을 눌렀을 때와 버튼을 땠을 때 상태를 나타내는 기능을 수행합니다.
    8) ﻿SoundInit(), SettingBtninit()은 소리와 버튼을 초기화하는 함수입니다.
    9) ﻿SettingBtnChange함수는 설정 버튼 상태가 변경될 때 호출되는 함수입니다. 버튼이 눌리면 Button이 전달되게 합니다.
+   10) ﻿SettingOnOff함수는 배경음악, 소리, 진동 등을 켜거나 끄는 기능을 하는 함수입니다.
+
 
