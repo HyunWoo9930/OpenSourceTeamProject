@@ -53,3 +53,7 @@
  ﻿10) OnApplicationQuit함수는 앱을 종료하는 함수이고, OnApplicationPause함수는 앱이 일시정지된 상황을 해결하는 함수입니다.
 
 
+4. ﻿DontDestroy.cs
+ 1) DontDestroy 클래스
+ 싱글톤 패턴을 사용하기 위해 Instance 변수를 사용합니다. Instace가 존재하면 게임오브젝트를 Destroy함수를 이용하여 없애고, Instance가 없는 경우 DontDestroyOnLoad함수를 실행합니다.
+
