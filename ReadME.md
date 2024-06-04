@@ -53,7 +53,7 @@
 ﻿3)SaveCharacterIndex함수는 캐릭터의 인덱스를 저장하고, 씬을 로드하는 기능을 하고,  GetSelectedCharIndex함수는 데이터를 로드해온 후 현재 선택된 캐릭터의 인덱스를 반환하는 기능을 합니다.
 ﻿4) IsRetry 함수는 informs[0].Retry값이 true이면 다시 시작하고, false이면 작동하지 않습니다.
 ﻿5) ChangeRetry 함수는 다시 시작할 때 변경된 데이터를 기반으로 다시 시작하는 것을 변경합니다.
-
+﻿6) LoadRanking 함수는 랭킹을 저장하고, SaveRankScore 함수는 점수에 따라 내림차순으로 점수를 정렬하는 함수입니다.
 
 
 
