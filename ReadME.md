@@ -50,6 +50,6 @@
  7)  GetBestScore 함수는 최고기록을 반환하는 함수입니다.
 ﻿ 8) GetSettingOn 함수는 설정에 있는 소리 버튼들을 처음으로 초기화하는 함수입니다.
  9) ChangeOnOff함수는 클릭하는 기능에 따라 소리 관련 기능을 변경하는 함수입니다.
-
+ ﻿10) OnApplicationQuit함수는 앱을 종료하는 함수이고, OnApplicationPause함수는 앱이 일시정지된 상황을 해결하는 함수입니다.
 
 
