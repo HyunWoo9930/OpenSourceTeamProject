@@ -38,6 +38,5 @@
  캐릭터, 랭킹, 설정 등 배열에 있는 정보 값들을 저장합니다. 
 또한, gameManager, characterManager은 각각 다른 gameManager, characterManager 클래스를 참조하고, characterSprite은 캐릭터 이미지 배열을 저장하고, rankCharacterImg은 순위에 따라 캐릭터를 나열하는 배열입니다.
 
- 1)﻿Awake()에선 게임이 실행될 때 저장된 데이터로 캐릭터, 순위, 설정 등을 초기화하고 초기 데이터를 플레이어에게 제공하는 함수입니다.
 
 
