@@ -152,7 +152,6 @@ public class GameManager : MonoBehaviour {
 
         player.isDie = true;
         player.MovingAnimation();
-        if (vibrationOn) Vibration();
         dslManager.SaveMoney(player.money);
 
         CancelInvoke();      
@@ -251,10 +250,6 @@ public class GameManager : MonoBehaviour {
                 vibrationOn = dslManager.GetSettingOn(type);
                 break;
         }       
-    }
-
-    void Vibration() {
-        sound[0].playOnAwake = false;
     }
 
     public void PlaySound(int index) {
