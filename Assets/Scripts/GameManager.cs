@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
         
-        if (Random.Range(1, 9) < 3) {
+        if (Random.Range(1, 9) < 4) {
             if (_state == State.LeftDir) _state = State.RightDir;
             else if (_state == State.RightDir) _state = State.LeftDir;
             isChangeDir[num + 1 == 20 ? 0 : num + 1] = true;
@@ -115,10 +115,10 @@ public class GameManager : MonoBehaviour {
         }
         
         scoreText.text = (++_score).ToString();
-        gauge.fillAmount += 0.7f;
+        gauge.fillAmount += 1.0f;
         for (int i = 0; i < backGrounds.Length; i++)
         {
-            backGrounds[i].transform.position += new Vector3(0, -0.05f, 0);
+            backGrounds[i].transform.position += new Vector3(0, -0.1f, 0);
         }
     }
     
